@@ -1,34 +1,41 @@
-<!-- Arquivo colisão.html-->
-<html><head>
-<title>exercício de colisão</title>
-<script src= "gamesWeb.js"></script>
-</head><body>
-<canvas id="canv" width="1000" height="600">
-este browser não suporta o objeto canvas do html5
-</canvas>
-<script>
-canvas = document.getElementByld("canv")
-ctx=canvas.getContext("2d");
-nave=new Image();
-nave.src="img/nave.png";
-nave.onload=fuction(){
-xNave=canvas.width/2-nave.width/2;
-yNave=canvas.height-nave.height;
-ctx.drawimage(nave, xNave, YNave);
-}
+<html>
+<head>
+    <title>Nave como Objeto</title>
+    <meta charset="utf-8"/>
+    <script src="sprite.js"></script>
+</head>
+<body>
+    <canvas id="canv" width="800" height="600">
+        Este browser não suporta o objeto canvas do HTML5.
+    </canvas>
+    <script>
+        canvas = document.getElementById("canv");
+        ctx = canvas.getContext("2d");
 
-inimigo=new Imagem();
-inimigo.src="img/inimigo.png";
-inimigo.onload=function(){
-    xinimigo=canvas.width/2-naves.width/2;
-    yinimigo=0;
-    ctx.drawimage(inimigo, xinimigo, yinimigo);
-}
-document.addEventListener("Keydown", function(evento){
-    movimentoNaveInimigo(evento.key);
-});
-</script>
-</body></html>
-//código no arquivo games.Web.js
+        imgNave = new Image();
+        imgNave.src = "img/nave.png";
+        imgNave.onload = criaNave;
 
-functi
+       unction criaNave() {            nave = new Sprite(ctx, imgNave, canvas.width / 2 - imgNave.width / 2,
+                            canvas.height - imgNave.height, 20);
+            nave.desenhar();
+        }
+        document.addEventListener("keydown",
+            function(evento) {
+                var tecla = evento.key;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (tecla == “ArrowLeft”) { // Seta para esquerda
+                    nave.esquerda();
+                } else if (tecla == “ArrowRight”) { // Seta para direita
+                    nave.direita();
+                } else if (tecla == “ArrowUp”) { // Seta para cima
+                    nave.subir();
+                } else if (tecla == “ArrowDown”) { // Seta para baixo
+                    nave.descer(30);
+                }
+                nave.desenhar();
+
+        });</script>
+</body>
+</html>
